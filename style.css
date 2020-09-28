@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+body, textarea {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    padding: 10px;
+}
+h1 {
+    font-family: 'Poiret One', cursive;
+}
+main {
+    max-width: 500px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+p {
+    font-size: 12px;
+}
