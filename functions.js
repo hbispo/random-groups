@@ -90,7 +90,8 @@ function pickGroups(max, min = 0) {
     window['currentGroups'] = [];
     // Splitting the lines, trimming them, removing non-letters from the beginning of each one and removing the empty ones
     let people = groupsForm.people.value.split("\n").map(function (word) {
-        return word.trim().replace(/^[\d]*[\W]*/, '').trim();
+        word = word.trim().replace(/^[\d]*[\W]*/, '').trim().toLocaleLowerCase();
+        return word[0].toLocaleUpperCase() + word.substr(1);
     }).filter(function (word) {
         return word.length > 0;
     });
