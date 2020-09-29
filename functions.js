@@ -1,29 +1,16 @@
-// Auto-resizing textarea, obtained at https://stackoverflow.com/a/25621277 (and modified)
-window.onload = function () {
-    const tx = document.getElementsByTagName('textarea');
-    for (let i = 0; i < tx.length; i++) {
-        tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
-        tx[i].addEventListener("input", OnInput, false);
-    }
-    window['currentGroups'] = [];
-    window['previousGroups'] = {
-        people: [],
-        groups: []
-    };
+window['currentGroups'] = [];
+window['previousGroups'] = {
+    people: [],
+    groups: []
 };
 
-function OnInput() {
-    hideError();
-    this.style.height = 'auto';
-    this.style.height = (this.scrollHeight) + 'px';
-}
-// End of auto-resizing textarea, obtained at https://stackoverflow.com/a/25621277 (and modified)
-
-
+// Auto-resizing textarea, obtained at https://stackoverflow.com/a/25621277 (and heavily modified)
 function adjustTextArea() {
+    hideError();
     groupsForm.people.style.height = 'auto';
     groupsForm.people.style.height = (groupsForm.people.scrollHeight) + 'px';
 }
+// End of auto-resizing textarea, obtained at https://stackoverflow.com/a/25621277 (and heavily modified)
 
 
 // Random number in an interval, obtained at https://stackoverflow.com/a/7228322 (and modified)
@@ -161,7 +148,7 @@ function pickGroups(max, min = 0) {
         return group.join(', ');
     });
 
-    document.getElementsByTagName('ol')[0].innerHTML = '<li>' + groups.join('</li><li>') + '</li>'
+    document.getElementById('groupList').innerHTML = '<li>' + groups.join('</li><li>') + '</li>'
     document.getElementById('groups').style.display = 'block';
 
     let element = document.createElement('a');
@@ -191,6 +178,6 @@ function resetGroups() {
     groupsForm.reset();
 
     adjustTextArea();
-    document.getElementsByTagName('ol')[0].innerHTML = '';
+    document.getElementById('groupList').innerHTML = '';
     document.getElementById('groups').style.display = '';
 }
