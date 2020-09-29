@@ -87,6 +87,7 @@ function loadPreviousGroups() {
 }
 
 function pickGroups(max, min = 0) {
+    hideError();
     window['currentGroups'] = [];
     // Splitting the lines, trimming them, removing non-letters from the beginning of each one and removing the empty ones
     let people = groupsForm.people.value.split("\n").map(function (word) {
@@ -161,7 +162,17 @@ function pickGroups(max, min = 0) {
     });
 
     document.getElementsByTagName('ol')[0].innerHTML = '<li>' + groups.join('</li><li>') + '</li>'
-    document.getElementsByTagName('main')[0].style.display = 'block';
+    document.getElementById('groups').style.display = 'block';
+
+    let element = document.createElement('a');
+    element.setAttribute('href', '#groups');
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
 }
 
 function downloadGroups() {
@@ -181,5 +192,5 @@ function resetGroups() {
 
     adjustTextArea();
     document.getElementsByTagName('ol')[0].innerHTML = '';
-    document.getElementsByTagName('main')[0].style.display = '';
+    document.getElementById('groups').style.display = '';
 }
