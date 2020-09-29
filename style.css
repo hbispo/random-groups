@@ -7,16 +7,65 @@ body {
 body, textarea {
     text-align: center;
     font-family: 'Open Sans', sans-serif;
-    padding: 10px;
 }
+
+textarea, ol {
+    text-align: left;
+}
+
+main {
+    display: none;
+}
+
 h1 {
     font-family: 'Poiret One', cursive;
 }
-main {
+
+div {
     max-width: 500px;
     margin-top: auto;
     margin-bottom: auto;
+    padding: 10px;
 }
-p {
+
+p, footer {
     font-size: 12px;
 }
+
+#error {
+    margin-top: -3.5rem;
+    margin-bottom: 1rem;
+    color: red;
+    visibility: hidden;
+}
+
+footer svg {
+    fill: #9b4dca;
+    height: 2rem;
+}
+
+/*GitHub corner ribbon*/
+.github-corner:hover .octo-arm{
+    animation:octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave{
+    0%,100%{
+        transform:rotate(0)
+    }
+    20%,60%{
+        transform:rotate(-25deg)
+    }
+    40%,80%{
+        transform:rotate(10deg)
+    }
+}
+@media (max-width:500px){
+    .github-corner:hover .octo-arm{
+        animation:none
+    }
+    .github-corner .octo-arm{
+        animation:octocat-wave 560ms ease-in-out
+    }
+}
+/*End of GitHub corner ribbon*/
