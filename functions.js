@@ -110,8 +110,44 @@ function pickGroups(max, min = 0) {
         let group = [];
 
         for (let i = 0; i < max && people.length; ++i) {
-            let person = randomIntFromInterval(0, people.length - 1);
-            group.push(people.splice(person, 1)[0]);
+            let available = [...people];
+            //If we're filling the last position in this group and there are previous groups to check
+            if (i == (max - 1) && window['previousGroups'].groups.length) {
+                //Running through previous groupings
+                for (let j = 0; j < window['previousGroups'].groups.length; ++j) {
+                    //Running through the individual groups of each previous grouping
+                    for (let k = 0; k < window['previousGroups'].groups[j].length; ++k) {
+                        //If the number of elements in the group was the same as this time
+                        if (window['previousGroups'].groups[j][k].length == max) {
+                            let allPresent = true;
+                            let previous = [...window['previousGroups'].groups[j][k]];
+                            //If all members of current group were in this previous group
+                            for (let l = 0; l < i; ++l) {
+                                let position = previous.indexOf(group[l]);
+                                if (position == -1) {
+                                    allPresent = false;
+                                    break;
+                                } else {
+                                    previous.splice(position, 1);
+                                }
+                            }
+                            if (allPresent) {
+                                //Making the last person unavailable for this group, if it was still available
+                                let position = available.indexOf(previous[0]);
+                                if (position >= 0) {
+                                    available.splice(position, 1);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (!available.length) {
+                break;
+            }
+            let person = randomIntFromInterval(0, available.length - 1);
+            people.splice(people.indexOf(available[person]), 1);
+            group.push(available.splice(person, 1)[0]);
         }
 
         groups.push(group);
