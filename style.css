@@ -5,6 +5,10 @@ body {
     text-align: center;
 }
 
+textarea {
+    resize: none;
+}
+
 textarea, ol {
     text-align: left;
 }
