@@ -93,8 +93,8 @@ function pickGroups(max, min = 0) {
     groupsForm.people.value = window['previousGroups'].people.join("\n");
     adjustTextArea();
 
-    if (people.length <= 1) {
-        return displayError('Please enter at least two different people below.');
+    if (people.length <= max) {
+        return displayError('Please enter at least ' + (max + 1) + ' different people below.');
     }
 
     let groups = [];
